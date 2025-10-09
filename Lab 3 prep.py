@@ -1,76 +1,102 @@
 class User:
     def __init__(self, uid, name, password, address, phone, email):
-        self.uid = ""
-        self.name = ""
-        self.password = ""
-        self.address = ""
-        self.phone = ""
+        self.uid = uid
+        self.name = name
+        self.password = password
+        self.address = address
+        self.phone = phone
         self.books = []
 class Book:
     def __init__(self, bid, title, author, publisher, year):
-        self.bid = ""
-        self.title = ""
-        self.author = ""
-        self.publisher = ""
-        self.year = ""
+        self.bid = bid
+        self.title = title
+        self.author = author
+        self.publisher = publisher
+        self.year = year
 
 class Author:
     def __init__(self, aid, name, affiliation, country, phone, email):
-        self.aid = ""
-        self.name = ""
-        self.affiliation = ""
-        self.country = ""
-        self.phone = ""
-        self.email = ""
+        self.aid = aid
+        self.name = name
+        self.affiliation = affiliation
+        self.country = country
+        self.phone = phone
+        self.email = email
 
-myUsers = {u1{name:"jerry george", password:"1234", adress:"3245 terracota drive", phone:"479-495-4958", email:"jerg@gmail.com"}}
-myBooks = {}
-myAuthors = {}
+myBooks = []
+myAuthors = []
+myUsers = []
 
-u1 = User(1, "jerry george", "1234", "3245 terracota drive", "479-495-4958", "jerg@gmail.com")
-u2 = User(2, "henry hansen", "4321", "4896 oak place", "918-492-0289", "henryh@gmail.com")
-u3 = User(3, "andrew anderson", "9374", "2431 birch plaza", "479-425-4857", "andrewa@gmail.com")
+def add_user():
+    newUser = {}
+    uid = input("enter user ID:")
+    name = input("enter user name:")
+    password = input("enter user password:")
+    address = input("enter user address:")
+    phone = input("enter user phone:")
+    email = input("enter user email:")
+    newUser = {"uid":uid,
+               "name":name,
+               "password":password,
+               "address":address,
+               "phone":phone,
+               "email":email,
+               "books":[]}
+    print(newUser)
+    return newUser
 
-b1 = Book(1, "The Hobbit", "J.R.R. Tolkein", "penguin classics", "1965")
-b2 = Book(2, "The Lord of the Rings", "J.R.R. Tolkein", "penguin classics", "1973")
-b3 = Book(3, "Chronicles of Narnia", "C.S. Lewis","penguin classics", "1974")
-b4 = Book(4, "Out of the Silent planet", "C.S. Lewis","penguin classics", "1956")
-b5 = Book(5, "The Iliad", "Homer", "penguin classics", "1967")
+def attribute_book():
+    loaner_ID = input("enter loaner ID:")
+    for user in myUsers:
+        if user["uid"] == loaner_ID:
+            user["books"].append(add_books())
 
-def add_user(uid, name, password, address, phone, email):
-    self.uid = input("enter user ID:")
-    self.name = input("enter user name:")
-    self.password = input("enter user password:")
-    self.address = input("enter user address:")
-    self.phone = input("enter user phone:")
-    self.email = input("enter user email:")
-    myUsers.update({uid: {"name": self.name,
-                          "password": self.password,
-                          "address": self.address,
-                          "phone": self.phone,
-                          "email": self.email,}})
-    print(myUsers)
+def add_books():
+    bid = input("enter book ID:")
+    title = input("enter title:")
+    author = input("enter author name:")
+    publisher = input("enter publisher:")
+    year = input("enter year:")
+    newBook = {"bid":bid,
+               "title":title,
+               "author":author,
+               "publisher":publisher,
+               "year":year}
+    return newBook
 
-
-def add_books(self, bid, title, author, publisher, year):
-    self.bid = input("enter book ID:")
-    self.title = input("enter title:")
-    self.author = input("enter author name:")
-    self.publisher = input("enter publisher:")
-    self.year = input("enter year:")
+def add_author():
+    aid = input("enter author ID:")
+    name = input("enter author name:")
+    affiliation = input("enter author affiliation:")
+    country = input("enter author country:")
+    phone = input("enter author phone:")
+    email = input("enter author email:")
+    newAuthor = {"aid":aid,
+                 "name":name,
+                 "affiliation":affiliation,
+                 "country":country,
+                 "phone":phone,
+                 "email":email}
+    return newAuthor
 
 while True:
-    print("press 1 to attribute books to user:")
-    print("press 2 to display list:")
-    print("press 3 to quit:")
+    print("press 1 to add user:")
+    print("press 2 to print:")
+    print("press 3 to attribute books to users:")
+    print("press 4 to add authors:")
+    print("press 5 to exit:")
     option = input("Select option:")
     if option == "1":
-        add_user(uid, name, password, address, phone, email)
+        myUsers.append(add_user())
 
     if option == "2":
-        add_books(self, bid, title, author, publisher, year)
-
+        print(myUsers)
+        print(myAuthors)
     if option == "3":
-        search = input("enter ID:")
-        print(search)
+        attribute_book()
 
+    if option == "4":
+        add_author()
+
+    if option == "5":
+        exit(0)

@@ -11,13 +11,12 @@ class Customer:
 
     def create_customer(self):
         self.cc = []
-        self.atdebitcard = []
         self.cid = input("enter new customer ID:")
         self.acc_no = int(input("enter account number:"))
         self.cname = input("enter customer name:")
         self.phone = int(input("enter phone number"))
         self.emailid = input("enter customer email:")
-        self.balance = int(input("enter customer balance"))
+        self.balance = int(input("enter customer balance:"))
         c = int(input("how many cards would you like to enter:"))
         for i in range(0, c):
             self.cc.append(int(input("enter card number:")))
@@ -37,17 +36,7 @@ class Customer:
         print("Email address: ", self.emailid)
         print("Balance: ", self.balance)
         print("Credit cards: ", self.cc)
-        print("Debit cards: ", self.debitcard)
-        print("Attributed debit cards",self.atdebitcard)
-
-    def attribute_card(self,cd):
-        self.atdebitcard.append(cd)
-    @staticmethod
-    def commit(self):
-        import pickle
-        with open("Accounts.dat", "wb") as file1:
-            pickle.dump(c1,d1, file1)
-        file1.close()
+        print("Debit card: ", self.debitcard)
 
 class Card:
     def __init__(self):
@@ -61,7 +50,7 @@ class Card:
         self.cn = int(input("enter card number:"))
         self.cv = int(input("enter cvv number:"))
         self.expdate = input("enter expiration date:")
-        self.balance = int(input("enter customer balance"))
+        self.balance = int(input("enter customer balance:"))
     def display_card(self):
         print("Card type: ", self.ty)
         print("Card number: ", self.cn)
@@ -70,21 +59,22 @@ class Card:
         print("Balance: ", self.balance)
 
 c1 = Customer()
+c2 = Customer()
 
 c1.create_customer()
+c2.create_customer()
+
+c1.debit_from(100)
+c2.credit_to(100)
 
 c1.display_all()
+c2.display_all()
 
 d1 = Card()
+d2 = Card()
 
 d1.create_card()
+d2.create_card()
 
 d1.display_card()
-
-c1.attribute_card(d1)
-
-c1.display_all()
-
-c1.commit_data()
-
-c1.display_card()
+d2.display_card()

@@ -18,7 +18,7 @@ def display_queue():
 
 def add_to_top():
     item = simpledialog.askstring("Add to Stack", "Enter item:")
-    stack.push(item)
+    stack.append(item)
     messagebox.showinfo("Added to top of stack.")
 
 def remove_from_stack():
@@ -26,7 +26,11 @@ def remove_from_stack():
     messagebox.showinfo("Removed from top of stack.")
 
 def display_stack():
-    messagebox.showinfo("Current stack", f"\n{items}")
+    if len(stack) == 0:
+        messagebox.showinfo("stack", "nothing in stack.")
+    else:
+        item="\n".join(reversed(stack))
+        messagebox.showinfo("stack", f"\n{item}")
 
 root = tk.Tk()
 root.title("Stack + Queue builder")
@@ -36,7 +40,7 @@ tk.Button(root, text="Remove from Queue", width=30, command=remove_from_queue).p
 tk.Button(root, text="Display Queue", width=30, command=display_queue).pack(pady=5)
 
 tk.Button(root, text="Add to Top", width=30, command=add_to_top).pack(pady=5)
-tk.Button(root, text="Remove from Stack", width=30, command=remove_from_stack).pack(pady=5)
+tk.Button(root, text="Remove from top of Stack", width=30, command=remove_from_stack).pack(pady=5)
 tk.Button(root, text="Display Stack", width=30, command=display_stack).pack(pady=5)
 
 root.mainloop()
